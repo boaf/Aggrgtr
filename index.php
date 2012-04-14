@@ -1,7 +1,8 @@
 <?php
+error_reporting(E_ALL);
 
 include('class.aggrgtr.php');
 
 $aggrgtr = new Aggrgtr();
 //echo $aggrgtr->getUrl();
-print_r( $aggrgtr->loadPlug( "twitter" ) );
+var_dump( $aggrgtr->buildUrl( "twitter" ) );

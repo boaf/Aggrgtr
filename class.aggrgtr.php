@@ -1,25 +1,34 @@
 <?php
-error_reporting(E_ALL);
 
 class Aggrgtr {
 
-    public $plugDir = dirname( __FILE__ ) . "/plugs/";
+    public $plugDir;
 
-    private $username;
-    private $count;
-    private $url;
+    private $data;
 
-    function loadPlug($plugName) {
-        $plugName .= ".json";
-        if( file_exiss( $this->plugDir . $plugName ) {
-            $load = json_decode( file_get_contents( $this->plugDir . $plugName ) );
+    function __construct() {
+        $this->data = array(
+            "username" => "gibson",
+            "count" => 5
+        );
+        $this->plugDir = dirname( __FILE__ ) . "/plugs/";
+    }
+
+    private function loadPlug($service) {
+        $service .= ".json";
+        if (file_exists($this->plugDir . $service)) {
+            $load = json_decode( file_get_contents( $this->plugDir . $service ) );
         }
         return $load;
     }
 
-    function getUrl() {
-        $this->url = "http://twitter.com/statuses/user_timeline/" . $this->username . ".json?count=" . $this->count;
-        return $this->url;
+    public function buildUrl($service) {
+        $plug = $this->loadPlug($service);
+        foreach($plug->opts as $opt => $val) {
+            echo preg_replace('$'.$opt, (string)$this->data[$val], $plug->url);
+        }
+        // // "http://twitter.com/statuses/user_timeline/" . $this->username . ".json?count=" . $this->count;
+        return $plug->url;
     }
 
 }

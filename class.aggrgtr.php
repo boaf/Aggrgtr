@@ -27,8 +27,7 @@ class Aggrgtr {
 
         for ($i = 1; $i <= sizeof($plug->opts); $i++) {
             $opt = $plug->opts[$i-1];
-            var_dump("%$i", (string)$this->data[$opt], $plug->url);
-            $plug->url = preg_replace("%$i", (string)$this->data[$opt], $plug->url);
+            $plug->url = str_replace("%$i", $this->data[$opt], $plug->url);
         }
 
         return $plug->url;

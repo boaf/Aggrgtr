@@ -32,6 +32,7 @@ class Aggrgtr {
         $url = $this->buildUrl($plug->url, $plug->opts);
         $load = json_decode(file_get_contents($url));
         $html = "";
+
         for($i = 0; $i < sizeof($load); $i++) {
             foreach ($plug->display as $item) {
                 // TODO: Make this grab the value via PHP object

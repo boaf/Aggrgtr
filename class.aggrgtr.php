@@ -11,7 +11,7 @@ class Aggrgtr {
 
     function loadPlug($plugName) {
         $plugName .= ".json";
-	if( file_exiss( $this->plugDir . $plugName ) {
+        if( file_exiss( $this->plugDir . $plugName ) {
             $load = json_decode( file_get_contents( $this->plugDir . $plugName ) );
         }
         return $load;

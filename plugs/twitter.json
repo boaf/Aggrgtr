@@ -1,5 +1,7 @@
 {
-   "url":"http://twitter.com/statuses/user_timeline/",
-   "username":"gibson",
-   "count":"5"
+    "url": "http://twitter.com/statuses/user_timeline/$username?count=$count",
+    "opts": {
+        "username": "username",
+        "count": "count"
+    }
 }

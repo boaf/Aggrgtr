@@ -7,8 +7,8 @@ class Aggrgtr {
     private $count;
     private $url;
 
-    function loadPluginInfo($jsonProperties) {
-
+    function loadPlug($plugName) {
+        $load = file_get_contents($plug_dir . $plugname . '.json');
     }
 
     function getUrl() {

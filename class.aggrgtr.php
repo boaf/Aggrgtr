@@ -24,10 +24,13 @@ class Aggrgtr {
 
     public function buildUrl($service) {
         $plug = $this->loadPlug($service);
-        foreach($plug->opts as $opt => $val) {
-            $plug->url = preg_replace('$'.$opt, (string)$this->data[$val], $plug->url);
+
+        for ($i = 1; $i <= sizeof($plug->opts); $i++) {
+            $opt = $plug->opts[$i-1];
+            var_dump("%$i", (string)$this->data[$opt], $plug->url);
+            $plug->url = preg_replace("%$i", (string)$this->data[$opt], $plug->url);
         }
-        // // "http://twitter.com/statuses/user_timeline/" . $this->username . ".json?count=" . $this->count;
+
         return $plug->url;
     }
 

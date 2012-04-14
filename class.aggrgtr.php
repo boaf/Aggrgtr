@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 
 class Aggrgtr {
 
-    private $plugDir = dirname( __FILE__ ) . "/plugs/";
+    public $plugDir = dirname( __FILE__ ) . "/plugs/";
 
     private $username;
     private $count;
@@ -11,8 +11,8 @@ class Aggrgtr {
 
     function loadPlug($plugName) {
         $plugName .= ".json";
-	if( file_exiss( $plugDir . $plugName ) {
-            $load = json_decode( file_get_contents( $plugDir . $plugName ) );
+	if( file_exiss( $this->plugDir . $plugName ) {
+            $load = json_decode( file_get_contents( $this->plugDir . $plugName ) );
         }
         return $load;
     }

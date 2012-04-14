@@ -6,31 +6,47 @@ class Aggrgtr {
 
     private $data;
 
-    function __construct() {
+    public function __construct() {
         $this->data = array(
             "username" => "gibson",
-            "count" => 5
+            "count" => 5,
+            "id" => 784615153
         );
         $this->plugDir = dirname( __FILE__ ) . "/plugs/";
+    }
+
+    private function buildUrl($url, $opts) {
+        for ($i = 1; $i <= sizeof($opts); $i++) {
+            $opt = $opts[$i-1];
+            $url = str_replace("%$i", $this->data[$opt], $url);
+        }
+
+        return $url;
     }
 
     private function loadPlug($service) {
         $service .= ".json";
         if (file_exists($this->plugDir . $service)) {
-            $load = json_decode( file_get_contents( $this->plugDir . $service ) );
+            $plug = json_decode( file_get_contents( $this->plugDir . $service ) );
         }
-        return $load;
+
+        $url = $this->buildUrl($plug->url, $plug->opts);
+        $load = json_decode(file_get_contents($url));
+
+        $html = "";
+        foreach ($plug->display as $item) {
+            // TODO: Make this grab the value via PHP object
+            $val = $item->loc;
+            $html .= str_replace("%0", $val, $item->html);
+        }
+
+        return $html;
     }
 
-    public function buildUrl($service) {
-        $plug = $this->loadPlug($service);
+    public function getSome($service) {
+        $html = $this->loadPlug($service);
 
-        for ($i = 1; $i <= sizeof($plug->opts); $i++) {
-            $opt = $plug->opts[$i-1];
-            $plug->url = str_replace("%$i", $this->data[$opt], $plug->url);
-        }
-
-        return $plug->url;
+        print_r($html);
     }
 
 }

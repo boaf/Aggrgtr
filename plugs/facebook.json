@@ -1,6 +1,4 @@
 {
-    "url": "https://graph.facebook.com/$id",
-    "opts": {
-        "id": "id"
-    }
+    "url": "https://graph.facebook.com/%1",
+    "opts": [ "id" ]
 }

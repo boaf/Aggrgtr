@@ -1,4 +1,22 @@
 {
-    "url": "http://twitter.com/statuses/user_timeline/%1?count=%2",
-    "opts": [ "username", "count" ]
+    "url": "http://twitter.com/statuses/user_timeline/%1.json?count=%2",
+    "opts": [ "username", "count" ],
+    "display": [
+        {
+            "loc": "user:profile_image_url",
+            "html": "<img src=%0 class=tweet_image />"
+        },
+        {
+            "loc": "user:name",
+            "html": "<span class=tweet_username>%0</span>"
+        },
+        {
+            "loc": "text",
+            "html": "<span class=tweet>%0</span>"
+        },
+        {
+            "loc": "created_at",
+            "html": "<span class=tweet_date>%0</span>"
+        }
+    ]
 }

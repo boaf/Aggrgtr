@@ -20,7 +20,6 @@ class Aggrgtr {
             $opt = $opts[$i-1];
             $url = str_replace("%$i", $this->data[$opt], $url);
         }
-
         return $url;
     }
 
@@ -33,7 +32,7 @@ class Aggrgtr {
         $url = $this->buildUrl($plug->url, $plug->opts);
         $load = json_decode(file_get_contents($url));
         $html = "";
-        for($i = 0; $i< sizeof($load); $i++) {
+        for($i = 0; $i < sizeof($load); $i++) {
             foreach ($plug->display as $item) {
                 // TODO: Make this grab the value via PHP object
                 $val = explode(":", $item->loc);
@@ -47,9 +46,8 @@ class Aggrgtr {
 
                 $html .= str_replace("%0", $val, $item->html) . "<br />\n";
             }
-            $i++;
         }
-        
+
         $html .= "<br />";
 
         return $html;

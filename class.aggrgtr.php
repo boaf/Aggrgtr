@@ -3,12 +3,18 @@ error_reporting(E_ALL);
 
 class Aggrgtr {
 
+    private $plugDir = dirname( __FILE__ ) . "/plugs/";
+
     private $username;
     private $count;
     private $url;
 
     function loadPlug($plugName) {
-        $load = file_get_contents($plug_dir . $plugname . '.json');
+        $plugName .= ".json";
+	if( file_exiss( $plugDir . $plugName ) {
+            $load = json_decode( file_get_contents( $plugDir . $plugName ) );
+        }
+        return $load;
     }
 
     function getUrl() {

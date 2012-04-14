@@ -25,7 +25,7 @@ class Aggrgtr {
     public function buildUrl($service) {
         $plug = $this->loadPlug($service);
         foreach($plug->opts as $opt => $val) {
-            echo preg_replace('$'.$opt, (string)$this->data[$val], $plug->url);
+            $plug->url = preg_replace('$'.$opt, (string)$this->data[$val], $plug->url);
         }
         // // "http://twitter.com/statuses/user_timeline/" . $this->username . ".json?count=" . $this->count;
         return $plug->url;

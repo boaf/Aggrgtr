@@ -1,4 +1,4 @@
-t<?php
+<?php
 
 class Aggrgtr {
 
@@ -9,7 +9,7 @@ class Aggrgtr {
     public function __construct() {
         $this->data = array(
             "username" => "",
-            "count" => 5,
+            "count" => 5, // Makes the default resultset a set of 5.
             "id" => 0
         );
         $this->plugDir = dirname( __FILE__ ) . "/plugs/";

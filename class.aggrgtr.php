@@ -2,12 +2,17 @@
 
 class Aggrgtr {
 
-    private $plugDir;
+    public $plugDir;
+
     private $data;
 
     public function __construct() {
+        $this->data = array(
+            "username" => "gibson",
+            "count" => 5,
+            "id" => 784615153
+        );
         $this->plugDir = dirname( __FILE__ ) . "/plugs/";
-        $this->data = array();
     }
 
     private function buildUrl($url, $opts) {

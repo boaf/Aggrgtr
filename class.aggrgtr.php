@@ -1,4 +1,4 @@
-<?php
+t<?php
 
 class Aggrgtr {
 
@@ -8,9 +8,9 @@ class Aggrgtr {
 
     public function __construct() {
         $this->data = array(
-            "username" => "gibson",
+            "username" => "",
             "count" => 5,
-            "id" => 784615153
+            "id" => 0
         );
         $this->plugDir = dirname( __FILE__ ) . "/plugs/";
     }
@@ -54,10 +54,13 @@ class Aggrgtr {
         return $html;
     }
 
-    public function getSome($service) {
+    public function getSome($service, $userOrID) {
+        // This kills me. Fuck. Bad tenach, bad.
+        if( is_int( $userOrID ) ) $this->data['id'] = $userOrID;
+        else $this->data['username'] = $userOrID;
         $html = $this->loadPlug($service);
 
-        print_r($html);
+        echo $html;
     }
 
 }

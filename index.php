@@ -4,4 +4,6 @@ error_reporting(E_ALL);
 include('class.aggrgtr.php');
 
 $aggrgtr = new Aggrgtr();
-$aggrgtr->getSome("twitter");
+
+//Format is "service", "username or ID"
+$aggrgtr->getSome("twitter", "gibson");

@@ -9,7 +9,7 @@ class Aggrgtr {
     public function __construct() {
         $this->data = array(
             "username" => "",
-            "count" => 5, // Makes the default resultset a set of 5.
+            "count" => 15, // Makes the default resultset a set of 15.
             "id" => 0
         );
         $this->plugDir = dirname( __FILE__ ) . "/plugs/";
@@ -33,7 +33,7 @@ class Aggrgtr {
         $url = $this->buildUrl($plug->url, $plug->opts);
 
         if( strstr( $url , "rss" ) ) $load = $this->XMLtoJSON( $url );
-        else $load = json_decode(file_get_contents($url));
+        else $load = json_decode( file_get_contents( $url ) );
         $html = "";
 
         for($i = 0; $i < sizeof($load); $i++) {

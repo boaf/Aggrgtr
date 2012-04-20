@@ -6,4 +6,6 @@ include('class.aggrgtr.php');
 $aggrgtr = new Aggrgtr();
 
 //Format is "service", "username or ID"
-$aggrgtr->getSome("twitter", "gibson");
+#$aggrgtr->getSome("twitter", "gibson");
+#echo "<hr />";
+$aggrgtr->getSome("tumblr", "tenach");

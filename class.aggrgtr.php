@@ -20,6 +20,7 @@ class Aggrgtr {
             $opt = $opts[$i-1];
             $url = str_replace("%$i", $this->data[$opt], $url);
         }
+
         return $url;
     }
 
@@ -30,13 +31,19 @@ class Aggrgtr {
         }
 
         $url = $this->buildUrl($plug->url, $plug->opts);
-        $load = json_decode(file_get_contents($url));
+
+        if( strstr( $url , "rss" ) ) $load = $this->XMLtoJSON( $url );
+        else $load = json_decode(file_get_contents($url));
         $html = "";
 
         for($i = 0; $i < sizeof($load); $i++) {
             foreach ($plug->display as $item) {
                 // TODO: Make this grab the value via PHP object
                 $val = explode(":", $item->loc);
+
+                if($val[2]) {
+                    $val = $load[$i]->$val[0]->$val[1]->$val[2];
+                }
 
                 if($val[1]) {
                     $val = $load[$i]->$val[0]->$val[1];
@@ -45,6 +52,8 @@ class Aggrgtr {
                     $val = $load[$i]->$val[0];
                 }
 
+                echo $val;
+
                 $html .= str_replace("%0", $val, $item->html) . "<br />\n";
             }
         }
@@ -52,6 +61,18 @@ class Aggrgtr {
         $html .= "<br />";
 
         return $html;
+    }
+
+    function XMLtoJSON($source) {
+        $rss = file_get_contents( $source );
+        $rss = str_replace( array( "\n", "\r", "\t" ), '', $rss );
+        $rss = trim( str_replace( '"', "'", $rss ) );
+        $load = simplexml_load_string( $rss );
+        $json = json_encode( $load );
+
+//        print_r($json);
+
+        return $json;
     }
 
     public function getSome($service, $userOrID) {

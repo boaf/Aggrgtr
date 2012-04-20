@@ -1,0 +1,18 @@
+{
+    "url": "http://%1.tumblr.com/rss",
+    "opts": [ "username", "count" ],
+    "display": [
+        {
+            "loc": "channel:title",
+            "html": "<span class=tumblr_title>%0</span>"
+        },
+        {
+            "loc": "channel:item:title",
+            "html": "<span class=tumblr_item_title>%0</span>"
+        },
+        {
+            "loc": "channel:item:description",
+            "html": "<span class=tumblr_item_description>%0</span>"
+        }
+    ]
+}
